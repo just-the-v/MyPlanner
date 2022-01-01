@@ -1,0 +1,24 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t('.events') %></h1>
+    <%= link_to t('.new_event'), new_event_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+
+  <div class="flex justify-center items-center">
+    <%= custom_month_calendar events: @events do |date, events| %>
+      <% next if date.month != @start_date.month %>
+      <div class="w-40 h-24" data-controller="add-button-event-cell" data-action="mouseover->add-button-event-cell#hoverIn mouseout->add-button-event-cell#hoverOut">
+        <h4 class="<%= number_date_classes(date) %>"> <%= date.day.to_i %></h4>
+        <%= render events %>
+        <%= link_to new_event_path, id: 'addButton', class: 'hidden' do %>
+          <span>+</span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

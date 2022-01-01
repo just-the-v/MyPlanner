@@ -1,0 +1,42 @@
+<div class="simple-calendar">
+  <div class="flex justify-between text-2xl text-mono">
+    <div class="flex justify-between align-baseline w-64">
+      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: "" %>
+      <h1 class="calendar-title">
+        <%= t('date.month_names')[start_date.month].titleize %>
+        <%= start_date.year %>
+      </h1>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: "" %>
+    </div>
+    <div>
+      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, class: "rounded-md  px-3" %>
+    </div>
+  </div>
+
+
+  <table class="table table-striped border">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th class="font-medium border"><%= t('date.day_names')[day.wday].titleize %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: date_class(calendar, day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
