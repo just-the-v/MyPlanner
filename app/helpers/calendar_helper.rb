@@ -4,8 +4,8 @@ module CalendarHelper
   end
 
   def number_date_classes(day)
-    classes = ['text-mono text-xl w-7 text-center']
-    classes << ["text-white bg-red-600 rounded-full"] if day == Date.today
+    classes = ['text-mono text-xl text-center thirtyPxs']
+    classes << (day == Date.today ? ["text-white bg-red-600 rounded-full"] : ["font-medium"])
     classes.join(' ')
   end
 

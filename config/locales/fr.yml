@@ -60,4 +60,8 @@ fr:
         start_time: "Date de début"
         end_time: "Date de fin"
         title: "Titre"
+  layouts:
+    application:
+      french: "Français"
+      english: "Anglais"
 

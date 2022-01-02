@@ -60,3 +60,7 @@ en:
         start_time: "Start date"
         end_time: "End date"
         title: "Title"
+  layouts:
+    application:
+      french: "French"
+      english: "English"
