@@ -1,6 +1,6 @@
-<div id="<%= dom_id event %>" class="text-xs border -p-1" data-mdb-ripple="true">
+<div id="<%= dom_id event %>" class="text-xs shadow px-1 my-1" data-mdb-ripple="true">
   <%= link_to event, class: "flex justify-between" do %>
-    <%= event.title.truncate(15) %>
+    <%= event.title.truncate(13) %>
     <span class="">
       <%= event.start_time.strftime("%H:%M") %>
       -

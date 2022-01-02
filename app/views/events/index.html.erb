@@ -1,19 +1,18 @@
-<div class="w-full">
-  <div class="flex justify-between items-center">
-    <h1 class="font-medium text-4xl"><%= t('.events') %></h1>
-    <%= link_to t('.new_event'), new_event_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
+<div class="w-full overflow-scroll">
+  <h1 class="font-medium text-4xl"><%= t('.events') %></h1>
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
   <div class="flex justify-center items-center">
     <%= custom_month_calendar events: @events do |date, events| %>
       <% next if date.month != @start_date.month %>
-      <div class="w-40 h-24 displayOnHover">
+      <div class="w-40 h-24 displayOnHover overflow-auto">
           <div class="flex justify-between px-2 py-1 align-baseline">
             <h4 class="<%= number_date_classes(date) %>"><%= date.day.to_i %></h4>
-            <%= link_to new_event_path(nil, {start_date: date}), id: 'addButton', class: 'displayOnHoverItem border rounded-full thirtyPxs text-center' do %>
-              <h6 class="text-xl font-medium ">+</h6>
+            <% if date >= Date.today %>
+              <%= link_to new_event_path(nil, {start_date: date}), id: 'addButton', class: 'displayOnHoverItem border rounded-full thirtyPxs text-center' do %>
+                <h6 class="text-xl font-medium ">+</h6>
+              <% end %>
             <% end %>
           </div>
           <%= render events %>
