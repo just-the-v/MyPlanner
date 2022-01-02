@@ -4,7 +4,10 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @event %>
+    <div class="container text-center my-5">
+      <h1 class="text-4xl"><%= @event.title %></h1>
+      <h3 class="text-xl"><%= human_readable_date_interval(@event) %></h3>
+    </div>
 
     <%= link_to t('.edit'), edit_event_path(@event), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">

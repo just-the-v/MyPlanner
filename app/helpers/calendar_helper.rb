@@ -13,4 +13,13 @@ module CalendarHelper
     raise "custom_week_calendar requires a block" unless block
     CustomMonthlyCalendar.new(self, options).render(&block)
   end
+
+  def human_readable_date_interval(event)
+    start_time, end_time = event.start_time, event.end_time
+    if start_time.day != end_time.day
+      "#{I18n.l(start_time, format: :long).titleize} - #{I18n.l(end_time, format: :long).titleize}"
+    else
+      "#{I18n.l(start_time, format: :long).titleize} - #{end_time.strftime("%Hh%M")}"
+    end
+  end
 end
