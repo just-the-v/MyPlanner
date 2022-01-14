@@ -4,12 +4,12 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all.includes(:room, :user)
-    Jbuilder.encode do |json|
-      json.array! @events do |event|
-        json.extract! event, :id, :title, :room_id, :user_id, :color
-        json.room do ||
-      end
-    end
+    # Jbuilder.encode do |json|
+    #   json.array! @events do |event|
+    #     json.extract! event, :id, :title, :room_id, :user_id, :color
+    #     json.room do ||
+    #   end
+    # end
     @start_date = params[:start_date]&.to_date || Date.today
   end
 
