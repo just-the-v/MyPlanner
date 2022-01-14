@@ -4,6 +4,7 @@ I use TUICalendar as a calendar js lib. I wrapped all events into stimulus contr
 
 This is a very basic CRUD for events. 
 
+![image](https://user-images.githubusercontent.com/32273595/149593082-947f5d53-0170-472c-b3a7-140f74fed79f.png)
 
 ## Versions
 
