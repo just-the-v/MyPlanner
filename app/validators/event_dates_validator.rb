@@ -1,7 +1,6 @@
 class EventDatesValidator < ActiveModel::Validator
   def validate(record)
     @record = record
-    validate_start_time
     validate_end_time
   end
 

@@ -69,3 +69,7 @@ end
 gem 'net-smtp', require: false
 gem "simple_calendar", "~> 2.4"
 gem 'rails-i18n', '~> 7.0.0'
+
+gem "devise", "~> 4.8"
+
+gem "rolify", "~> 6.0"

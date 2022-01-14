@@ -12,3 +12,4 @@ pin "tui-code-snippet", to: "https://ga.jspm.io/npm:tui-code-snippet@1.5.2/dist/
 pin "tui-date-picker", to: "https://ga.jspm.io/npm:tui-date-picker@4.3.1/dist/tui-date-picker.js"
 pin "tui-time-picker", to: "https://ga.jspm.io/npm:tui-time-picker@2.1.4/dist/tui-time-picker.js"
 pin "@rails/ujs", to: "https://ga.jspm.io/npm:@rails/ujs@7.0.0/lib/assets/compiled/rails-ujs.js"
+pin "tinycolor2", to: "https://ga.jspm.io/npm:tinycolor2@1.4.2/tinycolor.js"

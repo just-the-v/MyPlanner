@@ -3,7 +3,13 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = Event.all.includes(:room, :user)
+    Jbuilder.encode do |json|
+      json.array! @events do |event|
+        json.extract! event, :id, :title, :room_id, :user_id, :color
+        json.room do ||
+      end
+    end
     @start_date = params[:start_date]&.to_date || Date.today
   end
 
@@ -26,11 +32,17 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = Event.new(event_params)
+    if params[:id].blank?
+      @event = Event.new(**event_params, user: current_user)
+    else
+      @event = Event.find(params[:id])
+      @event.assign_attributes(event_params)
+    end
+
 
     respond_to do |format|
-      if @event.save
-        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+      if @event.save!
+        format.html { redirect_to events_path, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,9 +53,10 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
+
     respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
+      if @event.update!(event_params)
+        format.html { redirect_to events_path, notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -70,6 +83,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:start_time, :end_time, :title)
+      params.permit(:start_time, :end_time, :title, :room_id, :color)
     end
 end
