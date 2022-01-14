@@ -1,24 +1,11 @@
-# README
+# My Simple Planner
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I use TUICalendar as a calendar js lib. I wrapped all events into stimulus controller methods that i use to interact with my database.
 
-Things you may want to cover:
+This is a very basic CRUD for events. 
 
-* Ruby version
 
-* System dependencies
+## Versions
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- _ruby 3.2.0_ 
+- _rails 7.x_
